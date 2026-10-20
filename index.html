@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#030604" />
+<meta name="description" content="Contagem regressiva para Terra Ameaçada 3. 31 de dezembro de 2026, às 14h (horário de Brasília)." />
+<title>Terra Ameaçada 3 — Contagem Regressiva</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,600;1,700&display=swap" rel="stylesheet" />
+<style>
+:root{color-scheme:dark;--green:#009b3a;--bright:#1bee76;--white:#f7fbf8}
+*{box-sizing:border-box}html,body{min-height:100%;margin:0}body{background:#020403;color:var(--white);font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;overflow-x:hidden}
+body:before{content:'';pointer-events:none;position:fixed;inset:-25%;z-index:-1;background:radial-gradient(ellipse 35% 26% at 50% 42%,rgba(0,155,58,.18),transparent 76%),radial-gradient(ellipse 42% 35% at 50% 95%,rgba(0,155,58,.075),transparent 80%)}
+.wrap{min-height:100svh;max-width:1160px;margin:0 auto;padding:clamp(22px,4vh,60px) 20px 26px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:clamp(16px,3vh,34px)}
+.logo{width:min(670px,100%);max-height:min(42vh,365px);object-fit:contain;filter:drop-shadow(0 0 14px rgba(0,155,58,.32)) drop-shadow(0 0 33px rgba(0,155,58,.20));user-select:none}
+.countdown{width:100%;max-width:960px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(5px,1vw,14px);text-align:center;align-items:baseline}
+.unit{min-width:0;padding:12px 4px 10px;border-radius:14px;background:linear-gradient(180deg,rgba(0,155,58,.06),rgba(0,155,58,.005));border:1px solid rgba(35,221,98,.12)}
+.value{font-variant-numeric:tabular-nums;white-space:nowrap;font-size:clamp(30px,7vw,83px);font-weight:600;line-height:1;letter-spacing:-.045em;color:#26dd75;text-shadow:0 0 12px rgba(0,218,83,.55),0 0 38px rgba(0,155,58,.3)}
+.label{font-family:Georgia,serif;font-style:italic;font-size:clamp(9px,1.65vw,15px);letter-spacing:.14em;text-transform:uppercase;color:#d6e8dc;margin-top:13px}
+.release{font-size:clamp(13px,2vw,17px);letter-spacing:.15em;color:#b8c4bb;margin-top:-10px;text-align:center}
+.avatar{width:clamp(64px,8vw,83px);height:clamp(64px,8vw,83px);border:1px solid rgba(39,236,107,.62);border-radius:50%;display:grid;place-items:center;background:#09180f;box-shadow:0 0 0 6px rgba(0,155,58,.055),0 0 23px rgba(14,228,92,.25),inset 0 0 16px rgba(0,155,58,.14);transition:transform .2s,box-shadow .2s;cursor:pointer;text-decoration:none}
+.avatar:hover,.avatar:focus-visible{transform:scale(1.09);box-shadow:0 0 35px rgba(14,228,92,.5);outline:none}
+.avatar img{width:80%;height:80%;object-fit:contain;image-rendering:pixelated}
+.note{max-width:760px;margin:4px 0 0;text-align:center;color:#9daf9f;font-size:clamp(13px,2.3vw,18px);line-height:1.45}
+.note strong{font-weight:600;color:#29cc70}
+.finish{font-size:clamp(30px,5vw,58px);color:#34eb82;text-shadow:0 0 20px #009b3a;text-align:center}
+@media(max-width:480px){.wrap{justify-content:center;gap:25px;padding:22px 11px}.logo{width:100%;max-height:29vh}.countdown{gap:4px}.unit{padding:9px 1px;border-radius:7px}.value{font-size:clamp(24px,7vw,36px)}.label{font-size:8px;letter-spacing:0;margin-top:8px}.note{padding:0 8px}}
+@media(prefers-reduced-motion:reduce){.avatar{transition:none}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<img class="logo" src="./logo-transparente.png" alt="Logo Terra Ameaçada 3" />
+<div class="countdown" id="countdown" role="timer" aria-label="Tempo restante para o lançamento">
+ <div class="unit"><div class="value" id="days">000</div><div class="label">Dias</div></div>
+ <div class="unit"><div class="value" id="hours">00</div><div class="label">Horas</div></div>
+ <div class="unit"><div class="value" id="minutes">00</div><div class="label">Minutos</div></div>
+ <div class="unit"><div class="value" id="seconds">00</div><div class="label">Segundos</div></div>
+ <div class="unit"><div class="value" id="milliseconds">000</div><div class="label">Milissegundos</div></div>
+</div>
+<div class="release">31.12.2026 · 14H · HORÁRIO DE BRASÍLIA</div>
+<a class="avatar" href="https://www.youtube.com/@peagaahmc" target="_blank" rel="noopener noreferrer" title="Visitar o canal do Peagaah" aria-label="Abrir canal do YouTube do Peagaah"><img src="https://mc-heads.net/avatar/Peagaah/128" alt="Cabeça da skin do Peagaah" loading="lazy" /></a>
+<p class="note"><strong>Nota:</strong> se o flamengo perder o brasileirão ou a libertadores o video será adiado para o dia <strong>20 de janeiro</strong>.</p>
+</main>
+<script>
+(function(){
+ const launch=Date.parse('2026-12-31T14:00:00-03:00');
+ const ids=['days','hours','minutes','seconds','milliseconds'];
+ const nodes=ids.map(id=>document.getElementById(id));
+ const pad=(n,d)=>String(n).padStart(d,'0');
+ let lastSecond=-1;
+ function update(){
+  const remaining=Math.max(0,launch-Date.now());
+  let left=remaining;
+  const days=Math.floor(left/86400000);left%=86400000;
+  const hours=Math.floor(left/3600000);left%=3600000;
+  const minutes=Math.floor(left/60000);left%=60000;
+  const seconds=Math.floor(left/1000);const milliseconds=left%1000;
+  if(seconds!==lastSecond||remaining===0){const values=[pad(days,3),pad(hours,2),pad(minutes,2),pad(seconds,2)];for(let i=0;i<4;i++)nodes[i].textContent=values[i];lastSecond=seconds}
+  nodes[4].textContent=pad(milliseconds,3);
+  if(remaining>0)requestAnimationFrame(update);
+  else{document.querySelector('.release').textContent='CHEGOU O DIA!';}
+ }
+ update();
+})();
+</script>
+</body>
+</html>
